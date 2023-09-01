@@ -58,8 +58,9 @@
       <artifactId>quarkus-jdbc-mysql</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-redis-client</artifactId>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson</artifactId>
+      <version>3.17.0</version>
     </dependency>
     <dependency>
       <groupId>io.quarkiverse.mybatis</groupId>

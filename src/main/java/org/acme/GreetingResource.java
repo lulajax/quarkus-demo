@@ -6,6 +6,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.acme.service.RedisClientHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class GreetingResource {
 
     @Autowired
     private WxArtwordTagService artwordTagService;
+    @Autowired
+    private RedisClientHelper redisClientHelper;
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
@@ -30,5 +33,13 @@ public class GreetingResource {
         LOGGER.info("tagList");
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(artwordTagService.list());
+    }
+
+    @GET
+    @Path("/redisTest")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String redisTest() {
+        redisClientHelper.setKey("test", "1");
+        return redisClientHelper.getValue("test");
     }
 }
